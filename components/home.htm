@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuokkaTutor</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <nav class="nav-bar">
+    <a href="/" class="nav-logo">QuokkaTutor</a>
+    <ul class="nav-links">
+      <li><a href="/learn">Learn</a></li>
+      <li><a href="/report">Report</a></li>
+    </ul>
+  </nav>
+
+  <main class="container text-center">
+    <div class="mt-4">
+      <div style="font-size:120px; margin-bottom:16px;">🐻</div>
+      <h1 style="font-size:42px; font-weight:800; color:var(--primary); margin-bottom:8px;">
+        QuokkaTutor
+      </h1>
+      <p style="font-size:20px; color:var(--text-light); margin-bottom:32px;">
+        AI 쿼카 선생님과 함께하는 영어 학습!
+      </p>
+
+      <div id="hero-actions">
+        <a href="/onboarding" class="btn btn-primary btn-lg" id="btn-start">
+          시작하기
+        </a>
+      </div>
+
+      <div class="dashboard-grid mt-4">
+        <div class="card">
+          <div class="card-icon">🃏</div>
+          <div class="card-title">Flashcard</div>
+          <div class="card-desc">플래시카드로 단어를 배워요</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">⌨️</div>
+          <div class="card-title">Typing Game</div>
+          <div class="card-desc">타이핑으로 단어를 연습해요</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <div class="card-title">AI Chat</div>
+          <div class="card-desc">쿼카 선생님과 대화해요</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/storage.js"></script>
+  <script>
+    // If already onboarded, show "Continue Learning" instead
+    const profile = QuokkaStorage.getProfile()
+    if (profile) {
+      const actions = document.getElementById('hero-actions')
+      actions.innerHTML = `
+        <a href="/learn" class="btn btn-primary btn-lg">학습 계속하기</a>
+        <div class="mt-2">
+          <span class="nav-badge" style="font-size:16px;">안녕, ${profile.name}!</span>
+        </div>
+      `
+    }
+  </script>
+</body>
+</html>

@@ -1,52 +1,37 @@
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { config } from 'dotenv'
+import pagesRouter from './routes/pages.js'
+import onboardingRouter from './routes/onboarding.js'
+import flashcardsRouter from './routes/flashcards.js'
+import typingRouter from './routes/typing.js'
+import chatRouter from './routes/chat.js'
+import reportRouter from './routes/report.js'
+import { errorHandler } from './middleware/error-handler.js'
+
+config()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const app = express()
 
-// Home route - HTML
-app.get('/', (req, res) => {
-  res.type('html').send(`
-    <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8"/>
-        <title>Express on Vercel</title>
-        <link rel="stylesheet" href="/style.css" />
-      </head>
-      <body>
-        <nav>
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/api-data">API Data</a>
-          <a href="/healthz">Health</a>
-        </nav>
-        <h1>Welcome to Express on Vercel 🚀</h1>
-        <p>This is a minimal example without a database or forms.</p>
-        <img src="/logo.png" alt="Logo" width="120" />
-      </body>
-    </html>
-  `)
-})
+// Middleware
+app.use(express.json())
+app.use(express.static(path.join(__dirname, '..', 'public')))
 
-app.get('/about', function (req, res) {
-  res.sendFile(path.join(__dirname, '..', 'components', 'about.htm'))
-})
+// API routes
+app.use('/api', onboardingRouter)
+app.use('/api', flashcardsRouter)
+app.use('/api', typingRouter)
+app.use('/api', chatRouter)
+app.use('/api', reportRouter)
 
-// Example API endpoint - JSON
-app.get('/api-data', (req, res) => {
-  res.json({
-    message: 'Here is some sample API data',
-    items: ['apple', 'banana', 'cherry'],
-  })
-})
+// Page routes
+app.use('/', pagesRouter)
 
-// Health check
-app.get('/healthz', (req, res) => {
-  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() })
-})
+// Error handler
+app.use(errorHandler)
 
 export default app

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuokkaTutor - 학습 리포트</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <nav class="nav-bar">
+    <a href="/" class="nav-logo">QuokkaTutor</a>
+    <ul class="nav-links">
+      <li><a href="/learn">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h1 style="font-size:28px; font-weight:800; margin:24px 0 8px;">
+      <span id="child-name"></span>의 학습 리포트
+    </h1>
+    <p style="color:var(--text-light); margin-bottom:24px;" id="report-date"></p>
+
+    <!-- Loading -->
+    <div class="card text-center" id="loading-state">
+      <div style="font-size:60px;" class="animate-bounce">🐻</div>
+      <h3 class="mt-2">리포트를 생성하고 있어요...</h3>
+      <div class="loading-dots mt-2"><span></span><span></span><span></span></div>
+    </div>
+
+    <!-- Report Content -->
+    <div class="hidden" id="report-content">
+      <!-- Stats Grid -->
+      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; margin-bottom:24px;">
+        <div class="report-stat">
+          <div>
+            <div class="stat-value" id="stat-time">0</div>
+            <div class="stat-label">학습 시간 (분)</div>
+          </div>
+        </div>
+        <div class="report-stat">
+          <div>
+            <div class="stat-value" id="stat-words">0</div>
+            <div class="stat-label">배운 단어</div>
+          </div>
+        </div>
+        <div class="report-stat">
+          <div>
+            <div class="stat-value" id="stat-accuracy">0%</div>
+            <div class="stat-label">정확도</div>
+          </div>
+        </div>
+        <div class="report-stat">
+          <div>
+            <div class="stat-value" id="stat-typing">0</div>
+            <div class="stat-label">타이핑 단어</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accuracy Bar -->
+      <div class="card">
+        <h3 style="font-size:18px; font-weight:800; margin-bottom:12px;">정확도</h3>
+        <div class="report-bar">
+          <div class="report-bar-fill" id="accuracy-bar" style="width:0%; background:var(--success);"></div>
+        </div>
+        <div class="flex justify-between" style="font-size:13px; color:var(--text-light);">
+          <span>0%</span>
+          <span id="accuracy-label">0%</span>
+          <span>100%</span>
+        </div>
+      </div>
+
+      <!-- Word Progress -->
+      <div class="card">
+        <h3 style="font-size:18px; font-weight:800; margin-bottom:12px;">단어 학습 현황</h3>
+        <div id="word-list"></div>
+      </div>
+
+      <!-- AI Insights -->
+      <div class="card">
+        <h3 style="font-size:18px; font-weight:800; margin-bottom:12px;">🐻 쿼카의 분석</h3>
+
+        <h4 style="font-weight:700; color:var(--success); margin:12px 0 8px;">잘하고 있는 점</h4>
+        <ul id="strengths-list" style="padding-left:20px; line-height:2;"></ul>
+
+        <h4 style="font-weight:700; color:var(--primary); margin:12px 0 8px;">추천 사항</h4>
+        <ul id="suggestions-list" style="padding-left:20px; line-height:2;"></ul>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex justify-center gap-2 mt-3 mb-3" style="gap:12px;">
+        <a href="/learn" class="btn btn-primary">학습 계속하기</a>
+        <button class="btn btn-outline" onclick="window.print()">프린트</button>
+      </div>
+    </div>
+
+    <!-- No Data State -->
+    <div class="card text-center hidden" id="no-data-state">
+      <div style="font-size:60px;">📊</div>
+      <h3 class="mt-2">아직 학습 데이터가 없어요</h3>
+      <p style="color:var(--text-light);">먼저 학습을 시작해주세요!</p>
+      <a href="/learn" class="btn btn-primary mt-3">학습 시작하기</a>
+    </div>
+  </main>
+
+  <script src="/js/storage.js"></script>
+  <script src="/js/report.js"></script>
+</body>
+</html>

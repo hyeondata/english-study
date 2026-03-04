@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuokkaTutor - 시작하기</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <nav class="nav-bar">
+    <a href="/" class="nav-logo">QuokkaTutor</a>
+  </nav>
+
+  <main class="container-sm">
+    <div class="text-center mt-3">
+      <div style="font-size:80px;">🐻</div>
+      <h1 style="font-size:28px; font-weight:800; margin-top:8px;">Let's get started!</h1>
+      <p style="color:var(--text-light);">아이의 정보를 입력해주세요</p>
+    </div>
+
+    <!-- Step Indicators -->
+    <div class="steps" id="step-dots">
+      <div class="step-dot active" data-step="1"></div>
+      <div class="step-dot" data-step="2"></div>
+      <div class="step-dot" data-step="3"></div>
+    </div>
+
+    <!-- Step 1: Basic Info -->
+    <div class="card" id="step-1">
+      <h2 style="font-size:20px; font-weight:800; margin-bottom:20px;">기본 정보</h2>
+
+      <div class="form-group">
+        <label class="form-label" for="child-name">아이 이름</label>
+        <input type="text" id="child-name" class="form-input" placeholder="이름을 입력하세요" maxlength="20"/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="child-age">나이</label>
+        <select id="child-age" class="form-select">
+          <option value="">나이를 선택하세요</option>
+          <option value="5">5살</option>
+          <option value="6">6살</option>
+          <option value="7">7살</option>
+          <option value="8">8살</option>
+          <option value="9">9살</option>
+          <option value="10">10살</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="goToStep(2)">다음</button>
+    </div>
+
+    <!-- Step 2: Personality -->
+    <div class="card hidden" id="step-2">
+      <h2 style="font-size:20px; font-weight:800; margin-bottom:8px;">아이의 성격</h2>
+      <p style="color:var(--text-light); margin-bottom:16px;">해당하는 것을 모두 선택하세요</p>
+
+      <div class="chip-group" id="personality-chips">
+        <button class="chip" data-trait="playful">활발한</button>
+        <button class="chip" data-trait="shy">수줍은</button>
+        <button class="chip" data-trait="competitive">경쟁적인</button>
+        <button class="chip" data-trait="curious">호기심 많은</button>
+        <button class="chip" data-trait="creative">창의적인</button>
+        <button class="chip" data-trait="careful">꼼꼼한</button>
+      </div>
+
+      <h3 style="font-size:18px; font-weight:700; margin:24px 0 12px;">좋아하는 동물</h3>
+      <div class="chip-group" id="animal-chips">
+        <button class="chip" data-animal="quokka">쿼카 🐻</button>
+        <button class="chip" data-animal="rabbit">토끼 🐰</button>
+        <button class="chip" data-animal="cat">고양이 🐱</button>
+        <button class="chip" data-animal="dog">강아지 🐶</button>
+        <button class="chip" data-animal="penguin">펭귄 🐧</button>
+        <button class="chip" data-animal="bear">곰 🐻</button>
+      </div>
+
+      <div class="flex gap-2 mt-3">
+        <button class="btn btn-outline" onclick="goToStep(1)" style="flex:1;">이전</button>
+        <button class="btn btn-primary" onclick="goToStep(3)" style="flex:2;">다음</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Learning Goal -->
+    <div class="card hidden" id="step-3">
+      <h2 style="font-size:20px; font-weight:800; margin-bottom:8px;">학습 목표</h2>
+      <p style="color:var(--text-light); margin-bottom:16px;">아이의 학습 목표를 선택하세요</p>
+
+      <div class="flex flex-col gap-2" id="goal-options">
+        <button class="chip goal-chip" data-goal="basic_vocabulary" style="width:100%; text-align:left; padding:16px 20px;">
+          <strong>기초 어휘</strong><br/>
+          <span style="font-size:13px; color:var(--text-light);">기본 단어부터 차근차근 배우기</span>
+        </button>
+        <button class="chip goal-chip" data-goal="conversation" style="width:100%; text-align:left; padding:16px 20px;">
+          <strong>영어 대화</strong><br/>
+          <span style="font-size:13px; color:var(--text-light);">간단한 영어 대화 연습하기</span>
+        </button>
+        <button class="chip goal-chip" data-goal="phonics" style="width:100%; text-align:left; padding:16px 20px;">
+          <strong>파닉스</strong><br/>
+          <span style="font-size:13px; color:var(--text-light);">알파벳 소리와 발음 익히기</span>
+        </button>
+        <button class="chip goal-chip" data-goal="reading" style="width:100%; text-align:left; padding:16px 20px;">
+          <strong>읽기</strong><br/>
+          <span style="font-size:13px; color:var(--text-light);">영어 문장 읽기 연습하기</span>
+        </button>
+      </div>
+
+      <div class="flex gap-2 mt-3">
+        <button class="btn btn-outline" onclick="goToStep(2)" style="flex:1;">이전</button>
+        <button class="btn btn-success" onclick="submitOnboarding()" id="btn-submit" style="flex:2;">완료!</button>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="card hidden text-center" id="loading-state">
+      <div style="font-size:80px;" class="animate-bounce">🐻</div>
+      <h2 style="margin-top:16px;">쿼카 선생님을 준비하고 있어요...</h2>
+      <div class="loading-dots mt-2">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/storage.js"></script>
+  <script src="/js/onboarding.js"></script>
+</body>
+</html>

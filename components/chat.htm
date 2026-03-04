@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuokkaTutor - AI Chat</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <nav class="nav-bar">
+    <a href="/" class="nav-logo">QuokkaTutor</a>
+    <ul class="nav-links">
+      <li><a href="/learn">Dashboard</a></li>
+    </ul>
+    <span class="nav-badge" id="nav-name"></span>
+  </nav>
+
+  <div class="container" style="padding:0; max-width:800px; margin:0 auto;">
+    <div class="chat-container">
+      <!-- Messages -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Messages rendered here -->
+      </div>
+
+      <!-- Suggestions -->
+      <div class="chat-suggestions" id="chat-suggestions"></div>
+
+      <!-- Input -->
+      <div class="chat-input-area">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button id="btn-send" onclick="sendMessage()">&#9654;</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/storage.js"></script>
+  <script src="/js/chat.js"></script>
+</body>
+</html>
