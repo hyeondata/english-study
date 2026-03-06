@@ -19,11 +19,12 @@
   <main class="container">
     <!-- Greeting -->
     <div class="card flex items-center gap-2" id="greeting-card" style="gap:16px;">
-      <div style="font-size:60px;">🐻</div>
-      <div>
+      <div style="font-size:60px;">🐨</div>
+      <div style="flex:1;">
         <h2 id="greeting-text" style="font-size:20px; font-weight:800;"></h2>
         <p id="greeting-sub" style="color:var(--text-light); font-size:15px;"></p>
       </div>
+      <div class="level-badge" id="level-display">Lv. ?</div>
     </div>
 
     <!-- Stats -->
@@ -59,6 +60,11 @@
         <div class="card-icon">💬</div>
         <div class="card-title">AI Chat</div>
         <div class="card-desc">쿼카 선생님과 대화하기</div>
+      </a>
+      <a href="/level-result" class="dashboard-card">
+        <div class="card-icon">🎬</div>
+        <div class="card-title">Phonics Video</div>
+        <div class="card-desc">파닉스 영상으로 배우기</div>
       </a>
     </div>
 

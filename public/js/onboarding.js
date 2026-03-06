@@ -108,8 +108,8 @@ async function submitOnboarding() {
     QuokkaStorage.setPersonality(data.personality)
     QuokkaStorage.startSession()
 
-    // Redirect to learning dashboard
-    window.location.href = '/learn'
+    // Redirect to level test
+    window.location.href = '/level-test'
   } catch (err) {
     console.error('Onboarding failed:', err)
     alert('오류가 발생했습니다. 다시 시도해주세요.')

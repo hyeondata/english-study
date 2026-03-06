@@ -1,7 +1,8 @@
-if (!QuokkaStorage.requireProfile()) { /* redirect */ }
+if (!QuokkaStorage.requireLevel()) { /* redirect */ }
 
 const profile = QuokkaStorage.getProfile()
 const personality = QuokkaStorage.getPersonality()
+const levelData = QuokkaStorage.getLevel()
 document.getElementById('nav-name').textContent = profile.name
 
 let words = []
@@ -9,9 +10,20 @@ let currentIndex = 0
 let score = 0
 let attemptNumber = 1
 
+function getLevelDifficulty() {
+  if (!levelData) return ''
+  const lvl = levelData.level
+  if (lvl <= 3) return 'easy'
+  if (lvl <= 6) return 'easy,medium'
+  return ''
+}
+
 async function loadWords() {
   try {
-    const res = await fetch('/api/flashcards?limit=10')
+    const params = new URLSearchParams({ limit: '10' })
+    const diff = getLevelDifficulty()
+    if (diff) params.set('difficulty', diff)
+    const res = await fetch('/api/flashcards?' + params)
     const data = await res.json()
     words = data.words
     currentIndex = 0

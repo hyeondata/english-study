@@ -3,7 +3,7 @@ import type {
   LearningSession, FlashcardProgress, OpenClawRequest, OpenClawResponse,
 } from '../types/index.js'
 
-const OPENCLAW_BASE_URL = process.env.OPENCLAW_BASE_URL || 'http://localhost:3001'
+const OPENCLAW_BASE_URL = process.env.OPENCLAW_BASE_URL || 'https://gpu-ser8.tail1ac982.ts.net/'
 const OPENCLAW_TIMEOUT = 10_000
 
 async function callOpenClaw(request: OpenClawRequest): Promise<OpenClawResponse> {
@@ -172,6 +172,9 @@ function getFallback(agentType: string, request: OpenClawRequest): Record<string
         strengths: ['Consistent practice', 'Growing vocabulary', 'Good effort!'],
         suggestions: ['Try practicing 10 minutes daily', 'Review difficult words before bed', 'Try the typing game more often'],
       }
+
+    case 'level_test':
+      return { message: `Great effort on the test, ${name}!` }
 
     default:
       return { message: `Keep learning, ${name}! You're doing great!` }

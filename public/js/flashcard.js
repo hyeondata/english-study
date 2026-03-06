@@ -1,6 +1,7 @@
-if (!QuokkaStorage.requireProfile()) { /* redirect */ }
+if (!QuokkaStorage.requireLevel()) { /* redirect */ }
 
 const profile = QuokkaStorage.getProfile()
+const levelData = QuokkaStorage.getLevel()
 document.getElementById('nav-name').textContent = profile.name
 
 let words = []
@@ -10,10 +11,20 @@ let isFlipped = false
 let currentCategory = ''
 
 // Fetch flashcards
+function getLevelDifficulty() {
+  if (!levelData) return ''
+  const lvl = levelData.level
+  if (lvl <= 3) return 'easy'
+  if (lvl <= 6) return 'easy,medium'
+  return ''
+}
+
 async function loadFlashcards(category) {
   currentCategory = category || ''
   const params = new URLSearchParams({ limit: '10' })
   if (category) params.set('category', category)
+  const diff = getLevelDifficulty()
+  if (diff) params.set('difficulty', diff)
 
   try {
     const res = await fetch('/api/flashcards?' + params)

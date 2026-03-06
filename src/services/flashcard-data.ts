@@ -80,7 +80,10 @@ export function getFlashcards(filters: {
 }): FlashcardWord[] {
   let result = [...FLASHCARD_DATA]
   if (filters.category) result = result.filter(w => w.category === filters.category)
-  if (filters.difficulty) result = result.filter(w => w.difficulty === filters.difficulty)
+  if (filters.difficulty) {
+    const diffs = filters.difficulty.split(',')
+    result = result.filter(w => diffs.includes(w.difficulty))
+  }
   // Shuffle
   result.sort(() => Math.random() - 0.5)
   return result.slice(0, filters.limit || 10)

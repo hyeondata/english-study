@@ -8,6 +8,8 @@ import flashcardsRouter from './routes/flashcards.js'
 import typingRouter from './routes/typing.js'
 import chatRouter from './routes/chat.js'
 import reportRouter from './routes/report.js'
+import levelTestRouter from './routes/level-test.js'
+import phonicsRouter from './routes/phonics.js'
 import { errorHandler } from './middleware/error-handler.js'
 
 config()
@@ -27,6 +29,8 @@ app.use('/api', flashcardsRouter)
 app.use('/api', typingRouter)
 app.use('/api', chatRouter)
 app.use('/api', reportRouter)
+app.use('/api', levelTestRouter)
+app.use('/api', phonicsRouter)
 
 // Page routes
 app.use('/', pagesRouter)

@@ -1,10 +1,11 @@
-// Gate: require profile
-if (!QuokkaStorage.requireProfile()) {
-  // redirect happens inside requireProfile
+// Gate: require profile + level
+if (!QuokkaStorage.requireLevel()) {
+  // redirect happens inside requireLevel
 }
 
 const profile = QuokkaStorage.getProfile()
 const personality = QuokkaStorage.getPersonality()
+const levelData = QuokkaStorage.getLevel()
 
 // Nav name badge
 document.getElementById('nav-name').textContent = profile.name
@@ -35,6 +36,11 @@ document.getElementById('stat-accuracy').textContent = accuracy + '%'
 // Simple streak: count days with activity (simplified for MVP)
 const streak = session ? 1 : 0
 document.getElementById('stat-streak').textContent = streak
+
+// Level badge
+if (levelData) {
+  document.getElementById('level-display').textContent = 'Lv. ' + levelData.level
+}
 
 // Ensure session exists
 if (!session) {

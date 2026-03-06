@@ -96,9 +96,37 @@ export interface ParentReport {
   generatedAt: string
 }
 
+// ─── Level Test ───
+export interface LevelTestQuestion {
+  id: string
+  type: 'word_meaning' | 'phonics_recognition' | 'sentence_comprehension'
+  prompt: string
+  promptKorean: string
+  options: { id: string; text: string }[]
+  correctOptionId: string
+  difficulty: 'easy' | 'medium' | 'hard'
+}
+
+export interface LevelTestResult {
+  score: number
+  level: number
+  totalQuestions: number
+  correctCount: number
+}
+
+// ─── Phonics Video ───
+export interface PhonicsVideo {
+  id: string
+  title: string
+  youtubeId: string
+  thumbnailUrl: string
+  levelRange: [number, number]
+  category: string
+}
+
 // ─── OpenClaw ───
 export interface OpenClawRequest {
-  agentType: 'personality_analysis' | 'dialogue' | 'feedback' | 'report'
+  agentType: 'personality_analysis' | 'dialogue' | 'feedback' | 'report' | 'level_test'
   childProfile: ChildProfile
   tutorPersonality?: TutorPersonality
   context: Record<string, unknown>

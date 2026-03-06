@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuokkaTutor - 레벨 결과</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <nav class="nav-bar">
+    <a href="/" class="nav-logo">QuokkaTutor</a>
+    <ul class="nav-links">
+      <li><a href="/learn">Learn</a></li>
+    </ul>
+    <span class="nav-badge" id="nav-name"></span>
+  </nav>
+
+  <main class="container-sm">
+    <!-- Result Card -->
+    <div class="card text-center" style="margin-top:24px; padding:32px;">
+      <div style="font-size:60px; margin-bottom:12px;">🐨</div>
+      <div class="level-badge" id="level-badge">Lv. ?</div>
+      <h2 style="font-size:22px; font-weight:800; margin:16px 0 8px;" id="result-title">테스트 완료!</h2>
+      <p style="color:var(--text-light); font-size:16px; margin-bottom:16px;" id="result-message"></p>
+
+      <!-- Score Bar -->
+      <div style="margin:20px 0;">
+        <div class="flex justify-between" style="font-size:14px; font-weight:700; margin-bottom:4px;">
+          <span id="score-label">0 / 10</span>
+          <span id="score-pct">0%</span>
+        </div>
+        <div class="report-bar">
+          <div class="report-bar-fill" id="score-bar-fill" style="width:0%; background:var(--success);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phonics Videos -->
+    <h3 style="font-size:18px; font-weight:800; margin:24px 0 12px;">추천 영상</h3>
+    <div id="video-list" class="flex flex-col" style="gap:12px;"></div>
+
+    <!-- YouTube Modal -->
+    <div id="video-modal" class="video-modal hidden" onclick="closeModalOutside(event)">
+      <div class="video-modal-content">
+        <div class="flex justify-between items-center" style="margin-bottom:12px;">
+          <h3 style="font-size:16px; font-weight:800;" id="modal-title"></h3>
+          <button class="btn btn-sm btn-outline" onclick="closeVideoModal()" style="padding:6px 12px; font-size:14px;">닫기</button>
+        </div>
+        <div class="video-embed-container">
+          <iframe id="video-iframe" src="" frameborder="0" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          </iframe>
+        </div>
+        <button class="btn btn-success btn-block mt-2" onclick="markWatched()" id="btn-watched">영상 봤어요</button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex" style="gap:12px; margin-top:24px;">
+      <a href="/learn" class="btn btn-primary btn-block">학습 시작하기</a>
+      <a href="/level-test" class="btn btn-outline btn-block">다시 테스트하기</a>
+    </div>
+  </main>
+
+  <script src="/js/storage.js"></script>
+  <script src="/js/level-result.js"></script>
+</body>
+</html>

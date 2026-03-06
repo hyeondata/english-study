@@ -5,6 +5,7 @@ const KEYS = {
   FLASHCARD_PROGRESS: 'quokka_flashcard_progress',
   LEARNING_SESSION: 'quokka_learning_session',
   CHAT_HISTORY: 'quokka_chat_history',
+  LEVEL_DATA: 'quokka_level_data',
 }
 
 const QuokkaStorage = {
@@ -88,10 +89,31 @@ const QuokkaStorage = {
     localStorage.setItem(KEYS.CHAT_HISTORY, '[]')
   },
 
+  // Level data
+  getLevel() {
+    return JSON.parse(localStorage.getItem(KEYS.LEVEL_DATA) || 'null')
+  },
+  setLevel(levelData) {
+    localStorage.setItem(KEYS.LEVEL_DATA, JSON.stringify(levelData))
+  },
+
   // Auth gate
   requireProfile() {
     if (!this.getProfile()) {
       window.location.href = '/onboarding'
+      return false
+    }
+    return true
+  },
+
+  // Gate: require profile + level
+  requireLevel() {
+    if (!this.getProfile()) {
+      window.location.href = '/onboarding'
+      return false
+    }
+    if (!this.getLevel()) {
+      window.location.href = '/level-test'
       return false
     }
     return true

@@ -592,6 +592,82 @@ body {
 .justify-between { justify-content: space-between; }
 .hidden { display: none; }
 
+/* ─── Level Test Options ─── */
+.level-test-option {
+  padding: 16px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: left;
+  border-radius: 14px;
+  transition: all 0.15s;
+}
+.level-test-option:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--background);
+}
+
+/* ─── Level Badge ─── */
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--warning));
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 8px 20px;
+  border-radius: 25px;
+  box-shadow: 0 3px 8px rgba(255,140,66,0.3);
+  white-space: nowrap;
+}
+
+/* ─── Video Thumbnail ─── */
+.video-thumbnail {
+  width: 120px;
+  height: 68px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.video-card:hover .video-thumbnail {
+  opacity: 0.85;
+}
+
+/* ─── YouTube Modal ─── */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.video-modal.hidden { display: none; }
+.video-modal-content {
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  width: 100%;
+  max-width: 640px;
+  animation: fadeInUp 0.3s ease;
+}
+.video-embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+.video-embed-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
   .container { padding: 12px; }

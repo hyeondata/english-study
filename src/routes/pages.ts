@@ -20,6 +20,8 @@ router.get('/typing', servePage('typing.htm'))
 router.get('/chat', servePage('chat.htm'))
 router.get('/report', servePage('report.htm'))
 router.get('/about', servePage('about.htm'))
+router.get('/level-test', servePage('level-test.htm'))
+router.get('/level-result', servePage('level-result.htm'))
 
 router.get('/healthz', (_req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() })
